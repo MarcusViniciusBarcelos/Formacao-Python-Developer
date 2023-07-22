@@ -1,4 +1,6 @@
+from usuario import cadastrar_usuario
 from menu_admin import menu_admin
+from conta import cadastrar_conta
 from conta import login
 
 
@@ -8,13 +10,31 @@ def main():
     usuarios = []
 
     while True:
-        print('\n1 - Login')
-        print('2 - Menu Administrador')
-        print('3 - Sair')
+        print('\n1 - Cadastrar Usuário')
+        print('2 - Cadastrar Conta Bancária')
+        print('3 - Login')
+        print('4 - Menu Administrador')
+        print('5 - Sair')
 
         opcao = int(input('Digite o número da operação desejada: '))
 
         if opcao == 1:
+            usuario = cadastrar_usuario()
+            usuarios.append(usuario)
+            print('Usuário cadastrado com sucesso.')
+            print(usuario)
+
+        elif opcao == 2:
+            if not usuarios:
+                print('Cadastre um usuário primeiro.')
+                continue
+            usuario = usuarios[-1]
+            conta = cadastrar_conta(usuario)
+            contas.append(conta)
+            print('Conta cadastrada com sucesso.')
+            print(conta)
+
+        elif opcao == 3:
             conta = login(contas)
             if conta:
                 print('Login realizado com sucesso.')
@@ -22,10 +42,10 @@ def main():
             else:
                 print('Conta ou senha inválidos.')
 
-        elif opcao == 2:
-            menu_admin(contas, usuarios)
+        elif opcao == 4:
+            menu_admin(contas)
 
-        elif opcao == 3:
+        elif opcao == 5:
             break
 
         else:
