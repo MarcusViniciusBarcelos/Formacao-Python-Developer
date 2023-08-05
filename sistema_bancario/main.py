@@ -1,4 +1,6 @@
-from menu_admin import menu_admin
+from usuario import Usuario
+from conta import ContaBancariaSimples
+from menu_admin import MenuAdmin
 
 def login(contas):
     num_conta = int(input('Digite o número da conta: '))
@@ -37,32 +39,8 @@ def menu_conta(conta):
             print('Opção inválida. Tente novamente.')
 
 def main():
-    contas = []
-    usuarios = []
-
-    while True:
-        print('\n1 - Login')
-        print('2 - Menu Administrador')
-        print('3 - Sair')
-
-        opcao = int(input('Digite o número da operação desejada: '))
-
-        if opcao == 1:
-            conta = login(contas)
-            if conta:
-                print('Login realizado com sucesso.')
-                menu_conta(conta)
-            else:
-                print('Conta ou senha inválidos.')
-
-        elif opcao == 2:
-            menu_admin(contas, usuarios)
-
-        elif opcao == 3:
-            break
-
-        else:
-            print('Opção inválida. Tente novamente.')
+    menu_admin = MenuAdmin()
+    menu_admin.executar()
 
 if __name__ == "__main__":
     main()
